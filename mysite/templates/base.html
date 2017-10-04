@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Social</title>
+
+    <link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+    integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+    crossorigin="anonymous">
+
+
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'simplesocial/css/master.css' %}">
+
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'home'%}">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Features</a>
+          </li>
+
+        </ul>
+
+          <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link disabled" href="{% url 'questions:create'%}">Ask a Question</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="{% url 'questions:create'%}">My Questions</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="{% url 'accounts:logout'%}">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link disabled" href="{% url 'accounts:login'%}">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="{% url 'accounts:signup'%}">Register</a>
+            </li>
+            {% endif %}
+
+          </ul>
+      </div>
+    </nav>
+
+
+    <div class="container">
+        {% block content %}
+
+
+        {% endblock %}
+    </div>
+
+  </body>
